@@ -1,3 +1,5 @@
+import 'package:TakePictures/camera.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -27,10 +29,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  Future<void> _incrementCounter() async {
+    cameras = await availableCameras();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CameraApp()),
+    );
   }
 
   @override
